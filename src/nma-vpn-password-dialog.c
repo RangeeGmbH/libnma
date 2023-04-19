@@ -21,6 +21,7 @@
 #include "nm-default.h"
 #include "nma-private.h"
 #include "nma-vpn-password-dialog.h"
+#include "nm-utils/nm-shared-utils.h"
 
 typedef struct {
 	GtkWidget *message_label;
@@ -81,7 +82,7 @@ nma_vpn_password_dialog_class_init (NMAVpnPasswordDialogClass *klass)
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
 	g_type_ensure (NM_TYPE_DEVICE);
-	gtk_widget_class_set_template_from_resource (widget_class,
+    nm_utils_gtk_widget_class_set_template_from_file_or_resource (widget_class,
 	                                             "/org/gnome/libnma/nma-vpn-password-dialog.ui");
 
 	gtk_widget_class_bind_template_child_private (widget_class, NMAVpnPasswordDialog, message_label);

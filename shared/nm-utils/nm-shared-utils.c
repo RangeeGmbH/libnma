@@ -1191,3 +1191,57 @@ nm_utils_strv_make_deep_copied (const char **strv)
 
 	return (char **) strv;
 }
+
+/*****************************************************************************/
+
+void
+nm_utils_gtk_widget_class_set_template_from_file(GtkWidgetClass* widget_class, const gchar* filename) {
+    GBytes *bytes;
+    GError *error = NULL;
+    gsize len;
+    char *contents;
+
+    if (!g_file_get_contents(filename, &contents, &len, &error))
+        g_error("error reading UI file %s: %s", filename, error->message);
+
+    bytes = g_bytes_new_take(contents, len);
+    gtk_widget_class_set_template(widget_class, bytes);
+
+    g_bytes_unref(bytes);
+}
+
+void
+nm_utils_gtk_widget_class_set_template_from_file_or_resource(GtkWidgetClass* widget_class, const gchar* resource_name) {
+    char ui_file[1024];
+    nm_sprintf_buf (ui_file, "%s%s", UIDIR, resource_name);
+
+    if (g_file_test(ui_file, G_FILE_TEST_EXISTS)){
+        nm_utils_gtk_widget_class_set_template_from_file(widget_class, ui_file);
+    } else {
+        gtk_widget_class_set_template_from_resource(widget_class, resource_name);
+    }
+}
+
+guint
+nm_utils_gtk_builder_add_from_file_or_resource(GtkBuilder *builder, const gchar *resource_path, GError **error){
+    char ui_file[1024];
+    nm_sprintf_buf (ui_file, "%s%s", UIDIR, resource_path);
+
+    if (g_file_test(ui_file, G_FILE_TEST_EXISTS)){
+        return gtk_builder_add_from_file(builder, ui_file, error);
+    } else {
+        return gtk_builder_add_from_resource(builder, resource_path, error);
+    }
+}
+
+GtkBuilder *
+nm_utils_gtk_builder_new_from_file_or_resource(const gchar *resource_path){
+    char ui_file[1024];
+    nm_sprintf_buf (ui_file, "%s%s", UIDIR, resource_path);
+
+    if (g_file_test(ui_file, G_FILE_TEST_EXISTS)){
+        return gtk_builder_new_from_file(ui_file);
+    } else {
+        return gtk_builder_new_from_resource(resource_path);
+    }
+}

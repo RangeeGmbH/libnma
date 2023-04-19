@@ -29,6 +29,7 @@
 #include "nma-mobile-wizard.h"
 #include "nma-mobile-providers.h"
 #include "utils.h"
+#include "nm-utils/nm-shared-utils.h"
 
 #define DEVICE_TAG "device"
 #define TYPE_TAG "setting-type"
@@ -1413,7 +1414,7 @@ nma_mobile_wizard_init (NMAMobileWizard *self)
 	NMAMobileWizardPrivate *priv = NMA_MOBILE_WIZARD_GET_PRIVATE (self);
 	GtkBuilder *builder;
 
-	builder = gtk_builder_new_from_resource ("/org/gnome/libnma/nma-mobile-wizard.ui");
+	builder = nm_utils_gtk_builder_new_from_file_or_resource ("/org/gnome/libnma/nma-mobile-wizard.ui");
 	priv->assistant = GTK_ASSISTANT (gtk_builder_get_object (builder, "assistant"));
 
 	priv->dev_combo = GTK_COMBO_BOX (gtk_builder_get_object (builder, "dev_combo"));

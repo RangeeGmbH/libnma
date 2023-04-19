@@ -10,6 +10,7 @@
 #include "nma-private.h"
 
 #include "nma-pkcs11-token-login-dialog.h"
+#include "nm-utils/nm-shared-utils.h"
 
 #include <gck/gck.h>
 
@@ -205,7 +206,7 @@ nma_pkcs11_token_login_dialog_class_init (NMAPkcs11TokenLoginDialogClass *klass)
 		g_param_spec_object ("token-slot", "Slot", "Slot containing the Token",
 		                     GCK_TYPE_SLOT, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
-	gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/libnma/nma-pkcs11-token-login-dialog.ui");
+    nm_utils_gtk_widget_class_set_template_from_file_or_resource (widget_class, "/org/gnome/libnma/nma-pkcs11-token-login-dialog.ui");
 	gtk_widget_class_bind_template_child_private (widget_class, NMAPkcs11TokenLoginDialog, pin_entry);
 	gtk_widget_class_bind_template_child_private (widget_class, NMAPkcs11TokenLoginDialog, remember);
 	gtk_widget_class_bind_template_callback (widget_class, pin_changed);

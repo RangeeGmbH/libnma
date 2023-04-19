@@ -31,6 +31,7 @@ nma_sysconfdir = join_paths(nma_prefix, get_option('sysconfdir'))
 nma_appdir = join_paths(nma_datadir, 'applications')
 nma_autostartdir = join_paths(nma_sysconfdir, 'xdg', 'autostart')
 nma_icondir = join_paths(nma_datadir, 'icons')
+nma_uidir = join_paths(nma_datadir, 'ui')
 
 soversion = 0
 current = 0

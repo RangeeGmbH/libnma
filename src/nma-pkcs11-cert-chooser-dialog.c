@@ -11,6 +11,7 @@
 
 #include "nma-pkcs11-cert-chooser-dialog.h"
 #include "nma-pkcs11-token-login-dialog.h"
+#include "nm-utils/nm-shared-utils.h"
 
 #include <string.h>
 #include <gck/gck.h>
@@ -422,7 +423,7 @@ nma_pkcs11_cert_chooser_dialog_class_init (NMAPkcs11CertChooserDialogClass *klas
 		g_param_spec_object ("slot", "PKCS#11 Slot", "PKCS#11 Slot",
 		                     GCK_TYPE_SLOT, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
-	gtk_widget_class_set_template_from_resource (widget_class,
+    nm_utils_gtk_widget_class_set_template_from_file_or_resource (widget_class,
 	                                             "/org/gnome/libnma/nma-pkcs11-cert-chooser-dialog.ui");
 
 	gtk_widget_class_bind_template_child_private (widget_class, NMAPkcs11CertChooserDialog, objects_view);

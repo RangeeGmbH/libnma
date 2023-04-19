@@ -16,6 +16,7 @@
 #include "nma-eap.h"
 #include "nm-utils.h"
 #include "utils.h"
+#include "nm-utils/nm-shared-utils.h"
 
 G_DEFINE_BOXED_TYPE (NMAEap, nma_eap, nma_eap_ref, nma_eap_unref)
 
@@ -136,7 +137,7 @@ nma_eap_init (gsize obj_size,
 	method->phase2 = phase2;
 
 	method->builder = gtk_builder_new ();
-	if (!gtk_builder_add_from_resource (method->builder, ui_resource, &error)) {
+	if (!nm_utils_gtk_builder_add_from_file_or_resource (method->builder, ui_resource, &error)) {
 		g_warning ("Couldn't load UI builder resource %s: %s",
 		           ui_resource, error->message);
 		nma_eap_unref (method);

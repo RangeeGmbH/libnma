@@ -10,13 +10,18 @@ deps = [
   libnm_dep
 ]
 
+cflags = [
+  '-DUIDIR="@0@"'.format(nma_uidir)
+]
+
 libutils_libnm = static_library(
   'utils-libnm',
   sources: shared_sources + files(
     'utils.c',
   ),
   include_directories: incs,
-  dependencies: deps
+  dependencies: deps,
+  c_args: cflags
 )
 
 libutils_libnm_dep = declare_dependency(
