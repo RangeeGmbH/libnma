@@ -25,6 +25,7 @@
 #include "nma-eap.h"
 
 #include "utils.h"
+#include "nm-utils/nm-shared-utils.h"
 
 #define AUTH_NAME_COLUMN   0
 #define AUTH_METHOD_COLUMN 1
@@ -519,7 +520,7 @@ nma_ws_802_1x_class_init (NMAWs8021xClass *klass)
 		                     | G_PARAM_CONSTRUCT
 		                     | G_PARAM_STATIC_STRINGS));
 
-	gtk_widget_class_set_template_from_resource (widget_class,
+    nm_utils_gtk_widget_class_set_template_from_file_or_resource (widget_class,
 	                                             "/org/gnome/libnma/nma-ws-802-1x.ui");
 
 	gtk_widget_class_bind_template_child (widget_class, NMAWs8021x, eap_auth_combo);

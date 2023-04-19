@@ -21,6 +21,7 @@
 
 #include "nma-bar-code.h"
 #include "nma-bar-code-widget.h"
+#include "nm-utils/nm-shared-utils.h"
 
 #define CARD_WIDTH_PT 252
 #define CARD_HEIGHT_PT 144
@@ -454,7 +455,7 @@ nma_bar_code_widget_class_init (NMABarCodeWidgetClass *klass)
 		                      NM_TYPE_CONNECTION,
 		                      G_PARAM_READABLE | G_PARAM_WRITABLE));
 
-	gtk_widget_class_set_template_from_resource (widget_class,
+    nm_utils_gtk_widget_class_set_template_from_file_or_resource (widget_class,
 	                                             "/org/gnome/libnma/nma-bar-code-widget.ui");
 
 	gtk_widget_class_bind_template_child_private (widget_class, NMABarCodeWidget, qr_code);

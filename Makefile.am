@@ -75,6 +75,7 @@ noinst_LTLIBRARIES += src/utils/libutils-libnm.la
 
 src_utils_libutils_libnm_la_CPPFLAGS = \
 	$(dflt_cppflags) \
+	-DUIDIR=\""$(uidir)"\" \
 	"-I$(srcdir)/shared" \
 	$(GTK3_CFLAGS) \
 	$(LIBNM_CFLAGS)
@@ -93,6 +94,7 @@ if WITH_LIBNMA_GTK4
 noinst_LTLIBRARIES += src/utils/libutils-libnm-gtk4.la
 
 src_utils_libutils_libnm_gtk4_la_CPPFLAGS = \
+	-DUIDIR=\""$(uidir)"\" \
 	"-I$(srcdir)/shared" \
 	$(GTK4_CFLAGS) \
 	$(LIBNM_CFLAGS)
@@ -800,6 +802,8 @@ EXTRA_DIST += \
 	gtkdocentities.ent.in \
 	\
 	po/meson.build
+
+uidir = $(datadir)/nm-applet/ui
 
 CLEANFILES += \
 	$(INTROSPECTION_GIRS) \

@@ -15,6 +15,7 @@
 #include "nma-ws-helpers.h"
 #include "nma-ui-utils.h"
 #include "utils.h"
+#include "nm-utils/nm-shared-utils.h"
 
 struct _NMAWsSae {
 	GtkGrid parent;
@@ -273,7 +274,7 @@ nma_ws_sae_class_init (NMAWsSaeClass *klass)
 	g_object_class_override_property (object_class,
 	                                  PROP_SECRETS_ONLY, "secrets-only");
 
-        gtk_widget_class_set_template_from_resource (widget_class,
+    nm_utils_gtk_widget_class_set_template_from_file_or_resource (widget_class,
                                                      "/org/gnome/libnma/nma-ws-sae.ui");
 
 	gtk_widget_class_bind_template_child (widget_class, NMAWsSae, psk_entry);

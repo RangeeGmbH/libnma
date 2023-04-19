@@ -15,6 +15,7 @@
 #include "nma-ws-helpers.h"
 #include "nma-ui-utils.h"
 #include "utils.h"
+#include "nm-utils/nm-shared-utils.h"
 
 struct _NMAWsWepKey {
 	GtkGrid parent;
@@ -441,7 +442,7 @@ nma_ws_wep_key_class_init (NMAWsWepKeyClass *klass)
 		                      | G_PARAM_CONSTRUCT
 		                      | G_PARAM_STATIC_STRINGS));
 
-        gtk_widget_class_set_template_from_resource (widget_class,
+    nm_utils_gtk_widget_class_set_template_from_file_or_resource (widget_class,
                                                      "/org/gnome/libnma/nma-ws-wep-key.ui");
 
 	gtk_widget_class_bind_template_child (widget_class, NMAWsWepKey, auth_method_combo);

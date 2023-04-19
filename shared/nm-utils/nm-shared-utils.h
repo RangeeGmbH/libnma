@@ -468,4 +468,11 @@ int nm_utils_fd_read_loop_exact (int fd, void *buf, size_t nbytes, bool do_poll)
 
 /*****************************************************************************/
 
+void nm_utils_gtk_widget_class_set_template_from_file(GtkWidgetClass* widget_class, const gchar* filename);
+void nm_utils_gtk_widget_class_set_template_from_file_or_resource(GtkWidgetClass* widget_class, const gchar* resource_name);
+
+guint nm_utils_gtk_builder_add_from_file_or_resource(GtkBuilder *builder, const gchar *resource_path, GError **error);
+
+/*****************************************************************************/
+
 #endif /* __NM_SHARED_UTILS_H__ */

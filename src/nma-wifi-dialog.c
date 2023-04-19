@@ -17,6 +17,7 @@
 #include "nma-wifi-dialog.h"
 #include "nma-ws.h"
 #include "nma-eap.h"
+#include "nm-utils/nm-shared-utils.h"
 
 /* For compatibility with NetworkManager-1.20 and earlier. */
 #define NMU_SEC_SAE 9
@@ -1499,7 +1500,7 @@ nma_wifi_dialog_init (NMAWifiDialog *self)
 
 	priv->builder = gtk_builder_new ();
 
-	if (!gtk_builder_add_from_resource (priv->builder, "/org/gnome/libnma/wifi.ui", &error)) {
+	if (!nm_utils_gtk_builder_add_from_file_or_resource (priv->builder, "/org/gnome/libnma/wifi.ui", &error)) {
 		g_warning ("Couldn't load builder resource: %s", error->message);
 		g_error_free (error);
 	}

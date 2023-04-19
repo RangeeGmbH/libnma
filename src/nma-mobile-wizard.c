@@ -45,6 +45,7 @@ static NMAMobileFamily get_provider_unlisted_type (NMAMobileWizard *self);
 static NMAMobileAccessMethod *get_selected_method (NMAMobileWizard *self, gboolean *manual);
 
 #include "nm-default.h"
+#include "nm-utils/nm-shared-utils.h"
 
 struct _NMAMobileWizard {
         GtkAssistant parent;
@@ -1407,7 +1408,7 @@ nma_mobile_wizard_class_init (NMAMobileWizardClass *klass)
 	object_class->finalize = finalize;
 
 	g_type_ensure (NM_TYPE_DEVICE);
-	gtk_widget_class_set_template_from_resource (widget_class,
+    nm_utils_gtk_widget_class_set_template_from_file_or_resource (widget_class,
 	                                             "/org/gnome/libnma/nma-mobile-wizard.ui");
 
 
